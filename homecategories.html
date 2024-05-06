@@ -13,6 +13,21 @@
 <div class="content" style="position:relative;top:100px;left:0%;box-shadow: 0px 30px 500px 50px rgb(0, 0, 0, .3);"> <!--applied shadow-->
   <h1>Use the buttons below to filter items</h1> <!--header-->
 
+  <form action="/get_found_items.php">
+    <label for="found_items">Which Item Have You Lost?</label>
+    <select name="found_items" id="found_items">
+      <option value="clothing">Clothing</option>
+      <option value="shoes">Shoes</option>
+      <option value="water_bottles">Water Bottles</option>
+      <option value="sports_equipment">Sports Equipment</option>
+      <option value="accessories">Accessories</option>
+      <option value="technology">Technology</option>
+      <option value="miscellaneous">Miscellaneous</option>
+      <option value="school_equipment">School Equipment</option>
+    </select>
+    <br><br>
+    <input type="submit" value="Submit">
+  </form>
 <a href="clothing.html" class="categorybutton">
   <h1>Clothing</h1>
 </a>
