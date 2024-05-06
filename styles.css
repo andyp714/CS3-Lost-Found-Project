@@ -53,10 +53,10 @@ p {
   overflow: hidden; /*clean*/
   z-index:1; /*place in front of background*/
   background-color: var(--darkgray); /*color of body*/
-  width:100%; /*width of body*/
+  width:90%; /*width of body*/
   /*margins for content*/
-  padding-left:70px;
-  padding-right:70px;
+  padding-left:5%;
+  padding-right:5%;
   /*text color and alignment*/
   color: var(--white);
   text-align:left;
@@ -480,12 +480,17 @@ input[type="radio"]::before {
   /*ease hover color change for text*/
   -webkit-transition: border 0.2s ease;
   transition: border 0.2s ease;
-  margin-bottom:10px;
-  margin-left:50px;
+  margin-bottom:1%;
   text-decoration: none; /* Removes underline */
   color: inherit; /* Inherits text color from parent elements */
 }
 
+.categorybutton img {
+  width: 100%;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 5%;
+}
 .categorybutton h1 {
   font-family: proxima-nova, sans-serif;
   font-weight: bold;
@@ -497,10 +502,30 @@ input[type="radio"]::before {
   padding-left: 25px;
   padding-right: 10px;
 }
+
 /*hover color change for submit button border and text*/
 .categorybutton:hover {
   border: 2.5px solid var(--orange);
 }
 .categorybutton:hover h1 {
   color:var(--orange);
+}
+.categorybutton:hover p {
+  color:var(--orange);
+}
+
+
+.row a {
+  width: 32%;
+  display:inline-block;
+  margin-left:.5%;
+  margin-right:.5%;
+  margin-bottom: 2%;
+}
+.row a h1 {
+  margin-bottom:2%;
+  margin-top:1%;
+}
+.row * {
+  box-sizing: border-box;
 }
