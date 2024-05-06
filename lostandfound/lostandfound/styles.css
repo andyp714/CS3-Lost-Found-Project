@@ -1,0 +1,531 @@
+/*basics------------------------------------------------*/
+
+/*Define colors*/
+:root {
+    --orange: #e47739;
+    --blue: #051c2c;
+    --white: #ffffff;
+    --gray: #f7f7f7;
+    --darkgray: #262626;
+}
+body, html {
+  height: 100%;
+  width: 100%;
+  margin-left: 0%;
+}
+/*clean body*/
+body{
+  margin:0;
+  padding:0;
+  overflow-x:hidden;
+}
+/*define h1, h2, p, compressed text (text formatting)*/
+h1 {
+  font-family: proxima-nova, sans-serif;
+  font-weight: bold;
+  font-size: 2em;
+  color: var(--orange);
+  display: block;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+}
+h2 {
+  font-family: proxima-nova, sans-serif;
+  font-weight: 500;
+  font-size: 1.5em;
+  color: var(--white);
+  display: block;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+}
+p {
+  font-family: proxima-nova, sans-serif;
+  font-weight: 100;
+  font-size: 1.2em;
+  color: var(--white);
+  display: block;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+}
+
+/*format the scroll content of website*/
+.content{
+  overflow: hidden; /*clean*/
+  z-index:1; /*place in front of background*/
+  background-color: var(--darkgray); /*color of body*/
+  width:90%; /*width of body*/
+  /*margins for content*/
+  padding-left:5%;
+  padding-right:5%;
+  /*text color and alignment*/
+  color: var(--white);
+  text-align:left;
+}
+
+/*navbar------------------------------------------------*/
+
+/*format nav bar*/
+.navbar {
+  z-index:2; /*place in front of content*/
+  background-color: var(--darkgray); /*color of nav*/
+  /*fix to top of screen and set dimensions*/
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 27px 26px;
+  /*shadow for aesthetic*/
+  box-shadow: 0px 50px 50px 10px rgb(0, 0, 0, 0.1);
+}
+/*format nav bar text*/
+.navbar a {
+  font-family: proxima-nova, sans-serif;
+  letter-spacing:1px;
+  position:absolute;
+  color:var(--orange);
+  text-decoration: none;
+}
+
+/*format question divider line*/
+.divideline {
+  position:relative;
+  left:0%;
+  width:100%;
+  border-top:2px solid var(--white);
+  margin-bottom:0px;
+  margin-top:30px;
+}
+
+/*format top bar edge line*/
+.divideline1 {
+  overflow: hidden;
+  position:absolute;
+  top:98px;
+  left:0;
+  width:100000000000px;
+  border-top:1px solid var(--orange);
+  border-bottom:1px solid var(--orange);
+  margin-bottom:0px;
+  margin-top:0px;
+}
+
+/*hamburger menu------------------------------------------------*/
+
+/*container for hamburger menu*/
+#menuToggle {
+  /*position container correctly*/
+  display: block;
+  position: relative;
+  top: 10px;
+  left: 20px;
+
+  z-index: 3; /*place in front of navbar*/
+
+  /*prevent container selection*/
+  -webkit-user-select: none; 
+  user-select: none;
+}
+/*invisible checkbox for hamburger menu*/
+#menuToggle input {
+  /*position checkbox*/
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;
+
+  cursor: pointer; /*show clickability*/
+
+  opacity: 0; /*hide checkbox*/
+  z-index:4; /*position in front of other elements*/
+
+  -webkit-touch-callout: none; /*prevent interactive menu on UI*/
+}
+
+/*3 lines of hamburger menu creation and formatting*/
+#menuToggle span {
+  /*position hamburger*/
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+
+  background:var(--white); /*color icon*/
+
+  z-index: 3; /*place in front of navbar*/
+
+  /*control origin for animation*/
+  -webkit-transform-origin: 4px 0px;
+  transform-origin: 4px 0px;
+
+  /*ease transition shown above*/
+  -webkit-transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0), opacity 0.55s ease;
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0), opacity 0.55s ease;
+}
+/*move origin for animation*/
+#menuToggle span:nth-last-child(2) {
+  -webkit-transform-origin: 0% 100%;
+  transform-origin: 0% 100%;
+}
+/*rotation of top axle*/
+#menuToggle input:checked ~ span {
+  opacity: 1;
+  -webkit-transform: rotate(45deg) translate(-2px, -1px);
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: var(--orange);   /*color change*/
+}
+/*remove middle axle*/
+#menuToggle input:checked ~ span:nth-last-child(3) {
+  opacity: 0;
+  -webkit-transform: rotate(0deg) scale(0.2, 0.2);
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+/*rotation of bottom axle*/
+#menuToggle input:checked ~ span:nth-last-child(2) {
+  -webkit-transform: rotate(-45deg) translate(0, -1px);
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+/*format link menu*/
+#menu {
+  position: absolute;
+  width: 100%;
+  margin: -100px 0 0 -50px;
+  padding: 50px;
+  padding-bottom:50px;
+  padding-top: 105px;
+
+  background: var(--white);
+  list-style-type: none; /*unformat list*/
+  -webkit-font-smoothing: antialiased; /*fix weird font thing*/
+
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#menuToggle input:checked ~ #menu {
+  opacity: 1; /* Make menu visible when input is checked */
+}
+
+/*format links*/
+#menuToggle a {
+  font-family: proxima-nova, sans-serif;
+  font-weight: bolder;
+  color: var(--darkgray);
+  /*ease hover color change*/
+  -webkit-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+  padding: 10px 0;
+  font-size: 30px;
+}
+/*link changes color when hovered on*/
+#menuToggle a:hover {
+  color: var(--orange);
+}
+
+/*reset properties after checked*/
+#menuToggle input:checked ~ ul {
+  -webkit-transform: none;
+  transform: none;
+}
+
+
+
+
+
+
+
+/*QUESTION TYPES------------------------------------------------*/
+
+/*textboxes------------------------------------------------*/
+
+/*format textbox*/
+input[type="text"] {
+  padding: 8px;
+  border: 2.5px solid var(--white); 
+  /*ease color shift of border*/
+  -webkit-transition: border 0.3s ease;
+  transition: border 0.3s ease;
+  /*font formatting*/
+  font-family: proxima-nova, sans-serif;
+  font-weight: 300;
+  font-size: 1.2em;
+}
+
+/*format selected checkbox*/
+input[type="text"]:focus {
+  outline: none;
+  border: 2.5px solid var(--orange); /*shift color when focused*/
+}
+
+/*sliders------------------------------------------------*/
+
+/*slider main*/
+input[type="range"] {
+  position: relative;
+  -webkit-appearance: none; /*hide default*/
+  width: 100%; 
+  height: 30px;
+  background: #4d4d4d;
+  outline: none;
+}
+/*change slider block when hovered on*/
+input[type="range"]:hover::-webkit-slider-thumb {
+  background-color: var(--orange);
+}
+
+/*the slider block*/
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /*hide default slider block*/
+  appearance: none;
+  width: 30px;
+  height: 30px;
+  background: var(--white); /*slider block default color*/
+  cursor: pointer; /*show clickability*/
+  /*ease color change of slider block when hovered on*/
+  -webkit-transition: background-color .3s ease;
+  transition: background-color .3s ease;
+}
+
+/*checkboxes and radios------------------------------------------------*/
+
+.box {
+      /*hide default checkbox*/
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      /*size new box*/
+      width: 20px;
+      height: 20px;
+      /*stylistic*/
+      border: 2.5px solid var(--white);
+      /*ease hover color change*/
+      -webkit-transition: border 0.3s ease;
+      transition: border 0.3s ease;
+      outline: none;
+      margin-right: 5px;
+      margin-bottom: 8px;
+      cursor: pointer; /*show clickability*/
+      display:grid;
+      place-content:center;
+}
+.box:hover {
+  border: 2.5px solid var(--orange);
+}
+/*show when checked*/
+.box::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  transform: scale(0);
+  /*ease checking animation and color shift on hover*/
+  -webkit-transition: 120ms transform ease-in-out, box-shadow 0.3s ease;
+  transition: 120ms transform ease-in-out, box-shadow 0.3s ease;
+  box-shadow: inset 30px 30px var(--white);
+}
+.box:checked::before {
+  transform: scale(1);
+}
+/*show when checked and hovered*/
+.box:hover::before {
+  box-shadow: inset 30px 30px var(--orange);
+}
+input[type="radio"] {
+  border-radius: 50%;
+}
+/*show when checked*/
+input[type="radio"]::before {
+  border-radius: 50%;
+  width: 9px;
+  height: 9px;
+  }
+/*columns for checkbox-label format*/
+.columns {
+  display: flex;
+  justify-content: space-between;
+}
+.column {
+  flex: 1;
+}
+
+/*dropdowns------------------------------------------------*/
+
+/*format dropdown div*/
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/*format dropdown button and hide*/
+.dropdown-toggle {
+  display: none;
+}
+
+/*create visual for dropdown button*/
+.dropdown-label {
+  /*sizing and transformations*/
+  position: relative;
+  display: block;
+  padding-left: 10px;
+  padding-right: 36px;
+  padding-top:4px;
+  padding-bottom:4px;
+  /*stylistic*/
+  font-weight: bold;
+  font-size: 1.2em;
+  font-family: proxima-nova, sans-serif;
+  color: var(--white);
+  background-color: var(--darkgray);
+  border: 2.5px solid var(--white);
+  cursor: pointer;   /*show clickability*/
+}
+
+/*changes color when hovered on*/
+.dropdown-label:hover {
+  color: var(--orange);
+  /*ease hover color change for font*/
+  -webkit-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+  border: 2.5px solid var(--orange);
+  /*ease hover color change for border*/
+  -webkit-transition: border .25s ease;
+  transition: border .25s ease;
+}
+
+/*dropdown arrow*/
+.dropdown-label::after {
+  content: "";
+  /*styling*/ 
+  border: solid var(--white);
+  /*ease hover color change for arrow*/
+  -webkit-transition: border 0.3s ease;
+  transition: border 0.3s ease;
+  border-width: 0 2.8px 2.8px 0;
+  display: inline-block;
+  padding: 4px;
+  /*positioning*/
+  position: absolute;
+  top: 45%;
+  right: 14px;
+  /*spin animation*/
+  transform: translateY(-50%) rotate(45deg);
+  -webkit-transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0), opacity 0.55s ease;
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0), opacity 0.55s ease;
+}
+
+/*dropdown arrow (changes color when hovered on)*/
+.dropdown-label:hover::after {
+  border: solid var(--orange);
+  border-width: 0 2.8px 2.8px 0;
+}
+
+/*dropdown menu of options*/
+.dropdown-menu {
+  /*styling and positioning*/
+  width:170px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: none;
+  position: absolute;
+  background-color: var(--white);
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /*shadow to make distinct*/
+  z-index: 1; /*place over content*/
+  max-height: 230px; /*set max height for the dropdown*/
+  overflow-y: auto; /*vertical scrolling when over max*/
+}
+
+/*dropdown links styling*/
+.dropdown-menu li a {
+  font-family: proxima-nova, sans-serif;
+  font-weight: 400;
+  font-size: 1em;
+  display: block;
+  padding: 8px;
+  padding-left:15px;
+  padding-right:15px;
+  text-decoration: none;
+  color: var(--darkgray);
+  /*ease hover color change for text*/
+  -webkit-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+}
+
+/*text options change color when hovered on*/
+.dropdown-menu li a:hover {
+  background-color: var(--gray);
+  color: var(--orange);
+}
+
+/*when dropdown is checked, label and menu are formatted as block and displayed */
+.dropdown-toggle:checked + .dropdown-label + .dropdown-menu {
+  display: block;
+}
+
+/*rotation settings for arrow*/
+.dropdown-toggle:checked + .dropdown-label::after {
+  transform: translateY(-5%) rotate(224deg);
+}
+
+/*Final Result popup------------------------------------------------*/
+.categorybutton {
+  display: block; /* Ensures it behaves like a div */
+  width: 90%;
+  background-color: var(--darkgray);
+  z-index: 2;
+  cursor: pointer; /*show clickability*/
+  border: 2.5px solid var(--white);
+  /*ease hover color change for text*/
+  -webkit-transition: border 0.2s ease;
+  transition: border 0.2s ease;
+  margin-bottom:1%;
+  text-decoration: none; /* Removes underline */
+  color: inherit; /* Inherits text color from parent elements */
+}
+
+.categorybutton img {
+  width: 100%;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 5%;
+}
+.categorybutton h1 {
+  font-family: proxima-nova, sans-serif;
+  font-weight: bold;
+  font-size: 2em;
+  color: var(--white);
+  /*ease hover color change for text*/
+  -webkit-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+  padding-left: 25px;
+  padding-right: 10px;
+}
+
+/*hover color change for submit button border and text*/
+.categorybutton:hover {
+  border: 2.5px solid var(--orange);
+}
+.categorybutton:hover h1 {
+  color:var(--orange);
+}
+.categorybutton:hover p {
+  color:var(--orange);
+}
+
+
+.row a {
+  width: 32%;
+  display:inline-block;
+  margin-left:.5%;
+  margin-right:.5%;
+  margin-bottom: 2%;
+}
+.row a h1 {
+  margin-bottom:2%;
+  margin-top:1%;
+}
+.row * {
+  box-sizing: border-box;
+}
